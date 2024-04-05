@@ -1,4 +1,5 @@
 package br.com.senai.models;
+
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -9,17 +10,18 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name="user")
+@Table(name="brand")
 @EqualsAndHashCode(of="id")
 
-public class User implements Serializable {
+public class Brand implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String usarname;
+    private String name;
 
     @Column(nullable = false)
     private String password;
 }
+
