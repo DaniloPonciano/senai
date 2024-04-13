@@ -9,16 +9,16 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name="user")
+@Table(name="users")
 @EqualsAndHashCode(of="id")
 
-public class User implements Serializable {
+public class Users implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String usarname;
+    private String username;
 
     @Column(nullable = false)
     private String password;

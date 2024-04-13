@@ -32,29 +32,24 @@ public class CoffeeController {
     }
 
     @PutMapping (value = "/updateCoffe",
-    produces = MediaType.APPLICATION_JSON_VALUE,
-    consumes = MediaType.APPLICATION_JSON_VALUE)
+        produces = MediaType.APPLICATION_JSON_VALUE,
+        consumes = MediaType.APPLICATION_JSON_VALUE)
+  public Coffee updateCoffee(@RequestBody Coffee coffee){
+        Coffee getCoffee = coffeeRepository.findById(coffee.getId()).orElseThrow();
+        Coffee updateCoffe = new Coffee();
 
-//    public Coffee updateCoffee(@RequestBody Coffee coffee){
-//        Coffee getCoffee = coffeeRepository.findById(coffee.getId()).orElseThrow();
-//        Coffee updateCoffe = new Coffee();
-//
-//        updateCoffee.setId(coffee.getId());
-//        updateCoffee.setId(coffee.getName());
-//        updateCoffee.setId(coffee.getPrice());
-//
-//        return coffeeRepository.save(updateCoffee);
-//
-//    }
+        updateCoffe.setId(coffee.getId());
+        updateCoffe.setName(coffee.getName());
+        updateCoffe.setPrice(coffee.getPrice());
 
-    @DeleteMapping(value = "/deleteCoffee/{id}",
-    produces = MediaType.APPLICATION_JSON_VALUE)
+        return coffeeRepository.save(updateCoffe);
 
-    public Coffee deleteCoffee(@PathVariable Long Id){
-        Coffee getCoffee = coffeeRepository.findById(Id).orElseThrow();
+ }
+
+    @DeleteMapping(value="/deleteCoffee/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Coffee deleteCoffee(@PathVariable Long id){
+        Coffee getCoffee = coffeeRepository.findById(id).orElseThrow();
         coffeeRepository.delete(getCoffee);
-
         return getCoffee;
     }
-
 }
